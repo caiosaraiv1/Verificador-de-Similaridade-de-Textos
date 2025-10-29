@@ -18,4 +18,17 @@ package projeto_2;
  */
 public class AVL {
 
+	No raiz;
+	int contadorRotacoes;
+	
+	public AVL() {
+		this.raiz = null;
+		contadorRotacoes = 0;
+	}
+	
+	public AVL(No no) {
+		this.raiz = no;
+		contadorRotacoes = 0;
+	}
+	
 }
