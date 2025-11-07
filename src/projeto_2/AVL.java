@@ -1,5 +1,8 @@
 package projeto_2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * IMPLEMENTAÇÃO DA ÁRVORE AVL MANUAL
  * * Esta classe é a nossa implementação manual da Árvore AVL auto-balanceada.
@@ -31,6 +34,10 @@ public class AVL {
 		contadorRotacoes = 0;
 	}
 	
+	public int getContadorRotacoes() {
+		return contadorRotacoes;
+	}
+
 	private int altura(No n) {
 		if (n == null) return 0;
 		return n.getAltura();
@@ -115,9 +122,49 @@ public class AVL {
 	    return y; 
 	}
 	
-	/*
-	 * TODO: método de busca por lista -> exibe todos os pares com similaridade acima do limiar;
-	 * TODO: método de busca topK -> exibe apenas os K pares mais semelhantes (K informado);
-	 * TODO: método de busca -> compara dois arquivos específicos (o limiar é ignorado neste modo);
-	 */
+	public List<Resultado> lista(double similaridadeMinima) {
+		List<Resultado> resultadosEncontrados = new ArrayList<>();
+		listaRecursivo(this.raiz, similaridadeMinima, resultadosEncontrados);
+		return resultadosEncontrados;
+	}
+	
+	private void listaRecursivo(No noAtual, double similaridadeMinima, List<Resultado> lista) {
+		if (noAtual == null) return;
+		if (noAtual.getSimilaridade() <= similaridadeMinima) {
+			listaRecursivo(noAtual.getDir(), similaridadeMinima, lista);
+		} else if (noAtual.getSimilaridade() > similaridadeMinima) {
+			lista.addAll(noAtual.getResultados());
+			listaRecursivo(noAtual.getEsq(), similaridadeMinima, lista);
+			listaRecursivo(noAtual.getDir(), similaridadeMinima, lista);
+		}
+	}
+	
+	public List<Resultado> topK(int K, double similaridadeMinima) {
+		if (K <= 0) return new ArrayList<>();
+		List<Resultado> resultadosEncontrados = new ArrayList<>();
+		topKRecursivo(this.raiz, K, similaridadeMinima, resultadosEncontrados);
+		return resultadosEncontrados;
+	}
+	
+	private void topKRecursivo(No noAtual, int K, double similaridadeMinima, List<Resultado> lista) {
+		if (noAtual == null) return;
+		if (lista.size() >= K) return;
+		
+		topKRecursivo(noAtual.getDir(), K, similaridadeMinima, lista);
+		
+		if (lista.size() >= K) return; // Se a direita já encheu a lista, pare
+		
+		if (noAtual.getSimilaridade() > similaridadeMinima) {
+			List<Resultado> listaAux = noAtual.getResultados();
+			for (Resultado res : listaAux) {
+				if (lista.size() < K) lista.add(res);
+				else break;
+			}
+			
+			if (lista.size() >= K) return;
+			
+			topKRecursivo(noAtual.getEsq(), K, similaridadeMinima, lista);
+		}
+	}
 }
+
