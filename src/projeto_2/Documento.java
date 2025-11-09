@@ -14,6 +14,8 @@ package projeto_2;
  * * 4. Popular sua 'HashTable' interna com o vocabulário e a frequência
  * de cada palavra (ex: <"estrutura", 1>, <"dados", 1>).
  */
+
+ //KAIQUE PAIVA FARÁ A CLASSE DOCUMENTO!!!!
 public class Documento {
 
 }
