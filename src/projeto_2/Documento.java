@@ -78,7 +78,4 @@ public class Documento {
         System.out.println("=== " + nomeArquivo + " ===");
         tabela.printDicio();
     }
-
-	
-	
 }

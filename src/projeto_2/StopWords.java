@@ -18,5 +18,4 @@ class StopWords {
 	    public static boolean eStopWord(String palavra) {
 	        return STOPWORDS.contains(palavra);
 	    }
-	
 }
