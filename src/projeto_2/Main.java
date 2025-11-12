@@ -15,8 +15,8 @@ package projeto_2;
  * saída no arquivo "resultado.txt".
  */
 public class Main {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
 
         //Testando classe Hash ------------------------------
         // cria a tabela com tamanho 10
@@ -43,6 +43,45 @@ public class Main {
         tabela.printDicio();
         System.out.println("Quantidade de colisões: " + tabela.getColisoes());
         //Fim do teste - apagar dps ------------------
+
+        // ========================= TESTE DO COMPARADOR (COSSSENO) =========================
+        System.out.println("\n=== Teste ComparadorCosseno ===");
+
+// Doc A
+        TabelaHash docA = new TabelaHash(17);
+        docA.inserir("dados", 3);
+        docA.inserir("ciência", 2);
+        docA.inserir("computação", 1);
+
+// Doc B
+        TabelaHash docB = new TabelaHash(17);
+        docB.inserir("dados", 1);
+        docB.inserir("ciência", 1);
+        docB.inserir("computação", 4);
+
+        ComparadorCosseno comp1 = new ComparadorCosseno(docA, docB);
+        double sim1 = comp1.similaridade();
+        System.out.println("Similaridade (docA x docB): " + sim1);
+
+// --- Caso idêntico (espera ~1.0)
+        TabelaHash docC = new TabelaHash(17);
+        docC.inserir("dados", 3);
+        docC.inserir("ciência", 2);
+        docC.inserir("computação", 1);
+
+        ComparadorCosseno comp2 = new ComparadorCosseno(docA, docC);
+        double sim2 = comp2.similaridade();
+        System.out.println("Similaridade (docA x docC - idênticos): " + sim2);
+
+// --- Caso disjunto (espera ~0.0)
+        TabelaHash docD = new TabelaHash(17);
+        docD.inserir("estruturas", 5);
+        docD.inserir("algoritmos", 2);
+
+        ComparadorCosseno comp3 = new ComparadorCosseno(docA, docD);
+        double sim3 = comp3.similaridade();
+        System.out.println("Similaridade (docA x docD - disjuntos): " + sim3);
+
     }
-    
+
 }

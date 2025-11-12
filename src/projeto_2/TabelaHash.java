@@ -56,7 +56,7 @@ public class TabelaHash {
         else System.out.println("Erro na inserção.");
     }
 
-    public int busca(String palavra) throws Exception{
+    public int busca(String palavra) {
         int index = dispersão2(palavra, 0);
 
         while(this.dicio[index] != null && !this.dicio[index].getPalavra().equals(palavra)){
@@ -64,11 +64,19 @@ public class TabelaHash {
         }
         
         if (this.dicio[index] != null && this.dicio[index].getPalavra().equals(palavra)) return this.dicio[index].getFrequencia();
-        else throw new Exception("Erro na busca.");
+        return -1;
     }
 
     public int getColisoes(){
         return this.qtdColisoes;
+    }
+
+    public int getM(){
+        return this.m;
+    }
+
+    public NoHash at(int i) {
+        return this.dicio[i];
     }
 
     public void printDicio(){
