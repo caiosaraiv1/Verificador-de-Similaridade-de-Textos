@@ -1,4 +1,4 @@
-package projeto_2;
+package projeto;
 
 public class NoHash {
     private String palavra;

@@ -1,4 +1,4 @@
-package projeto_2;
+package projeto;
 
 import java.util.HashSet;
 import java.util.Set;
