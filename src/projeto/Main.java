@@ -57,7 +57,7 @@ import java.nio.file.StandardOpenOption;
  *     → Calcula a similaridade entre dois arquivos específicos.
  *
  *       Exemplo:
- *         java projeto/Main docs 0.0 busca doc1.txt doc4.txt
+ *         java projeto/Main docs 0.0 busca arquivo1.txt arquivo4.txt
  *
  * ===============================================================
  * ⚙️ PARÂMETROS:
