@@ -50,15 +50,28 @@ public class TabelaHash {
     }
 
     public int busca(String palavra) {
-        int index = dispersao2(palavra, 0);
+    int h1 = dispersao1(palavra);
+    int h2 = dispersao2(palavra, 0);
 
-        while(this.dicio[index] != null && !this.dicio[index].getPalavra().equals(palavra)){
-            index = dispersao2(palavra, index+1);
-        }
-        
-        if (this.dicio[index] != null && this.dicio[index].getPalavra().equals(palavra)) return this.dicio[index].getFrequencia();
-        return -1;
+    int index = h1;
+    int tentativas = 0;
+
+    while (this.dicio[index] != null &&
+           !this.dicio[index].getPalavra().equals(palavra) &&
+           tentativas <= m) {
+
+        index = (h1 + tentativas * h2) % m;
+        tentativas++;
     }
+
+    if (this.dicio[index] != null &&
+        this.dicio[index].getPalavra().equals(palavra)) {
+        return this.dicio[index].getFrequencia();
+    }
+
+    return -1;
+}
+
 
     public int getColisoes(){
         return this.qtdColisoes;
