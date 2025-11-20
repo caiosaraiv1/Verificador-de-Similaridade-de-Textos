@@ -9,7 +9,12 @@ import java.util.Map;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption; 
-
+/**
+* Trabalho feito por:
+* Caio Ariel Cardoso Saraiva - 10439611
+* Isabela Hissa Pinto - 10441873
+* Kaique Barros Paiva - 10441787
+*/
 /**
  * ===============================================================
  *  VERIFICADOR DE SIMILARIDADE DE TEXTOS - INSTRUÇÕES DE USO
